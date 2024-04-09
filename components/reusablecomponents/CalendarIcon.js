@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CalendarIcon()
+ function CalendarIcon()
 {
   return
         (
@@ -23,3 +23,4 @@ export default function CalendarIcon()
           </svg>
         );  
 }
+export default CalendarIcon;
