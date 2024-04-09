@@ -1,66 +1,42 @@
+
 "use client"
 import React, { useState } from "react";
 
 import itemsData from "@/Data/items.json";
-import Carrousel from "@/components/reusablecomponents/Carrousel";
-import Smallicon from "@/components/reusablecomponents/Smallicon";
 import Link from "next/link";
 import Star from "@/components/reusablecomponents/Star";
-import { caropic } from "@/Data/caropicData";
-import { iconsData } from "@/Data/iconsData";
+import  caropic from "@/Data/caropicData";
+
 import { clickFiltersData } from "@/Data/clickFiltersData";
 import avgg from "@/components/reusablecomponents/avgg";
 import Sitelink from "@/components/reusablecomponents/Sitelink";
 import Menudropdown from "@/components/reusablecomponents/Menudropdown";
+import CarouselImage from "@//components/home/pairing/carouselImage/CarouselImage";
+
 function Clothes() {
-  let caropicIndex = 0;
   const [filter, setfilter] = useState("");
 
   const handleFilterChange = (newFilter: React.SetStateAction<string>) => {
     setfilter(newFilter);
-
   };
+
   return (
     <div className="mb-2 ">
-      <div className="   text-2xl ">
-        <div className="bg-white shadow  ">
-          <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-            <h1 className="text-xl font-bold tracking-tight text-gray-900 font-serif ">
-              Welcome to our site.....
-            </h1>
-          </div>
-        </div>
-        <Carrousel caropic={caropic} />
-      
+      <div className="text-2xl " >
         <Menudropdown
           name="categories"
           dropdata={clickFiltersData}
           onfilterchange={handleFilterChange}
         />
-  
-       
       </div>
       <div>
-        {itemsData.map((group,groupIndex) => (
+        {itemsData.map((group, groupIndex) => (
           <div key={groupIndex}>
             {(filter === "" || group.look === filter) && (
               <section>
-              {((group.id + 1) % 3 === 0) && (
-                  <div className="w-[vw] h-48 sm:h-[300px] my-6">
-                    {(() => {
-                      caropicIndex = (caropicIndex + 1) % caropic.length;
-                      return (
-                        <div
-                          className="h-40 sm:h-full w-full bg-cover bg-top text-2xl"
-                          style={{
-                            backgroundImage: `url(${caropic[caropicIndex].url})`,
-                          }}
-                        ></div>
-                      );
-                    })()}
-                  </div>
-                )}
-
+                {(group.id + 1) % 3 === 0 && // Inside Clothes component
+<CarouselImage caropicData={caropic} />
+}
                 <div className=" px-4 my-4 bg-stone-100 rounded-lg ">
                   <div className="flex space-x-10 m-1 p-2">
                     <div>
@@ -70,23 +46,28 @@ function Clothes() {
                       <p className="text-gray-500 dark:text-gray-400">
                         Embrace the Season with Effortless Style
                       </p>
-                      {/* <Link
+                       <Link
                         className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950"
                         href={{
-                          pathname: `components/Details/groupIndex/${}`,
-                          query: { groupindex: groupIndex} // Correctly specify groupid in query parameters
+                          pathname: `details/${groupIndex}`
+                          // query: { groupindex: groupIndex} // Correctly specify groupid in query parameters
                         }}
                       >
                         Go to Details
-                      </Link> */}
+                      </Link> 
                     </div>
                     <div className="m-1">
                       <div className="font-normal">
-                        <div>Expected delivery: {group.expected_delivery}</div>
+                        <div>
+                          Expected delivery: {group.expected_delivery}
+                        </div>
                         <h2 className="">
-                          Total cost :Rs {avgg({ groupid: groupIndex }).total}
+                          Total cost :Rs{" "}
+                          {avgg({ groupid: groupIndex }).total}
                         </h2>
-                        <Star len={avgg({ groupid: groupIndex }).avgRating} />
+                        <Star
+                          len={avgg({ groupid: groupIndex }).avgRating}
+                        />
                       </div>
                     </div>
                   </div>
@@ -99,7 +80,7 @@ function Clothes() {
                             className=" sm:w-46 max-h-[16rem]  object-cover align-middle  aspect-product  overflow-hidden "
                             src={cart.image_url}
                           />
-                           < Sitelink sitelink={cart.image_url}/>
+                          <Sitelink setsitelink={cart.image_url} sitelink={cart.link}/>
                         </div>
                       </div>
                     ))}
@@ -109,10 +90,11 @@ function Clothes() {
             )}
           </div>
         ))}
-        <Smallicon icon={iconsData} />
+      
       </div>
     </div>
   );
 }
 
 export default Clothes;
+

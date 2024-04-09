@@ -1,5 +1,5 @@
 
-export const caropic =
+ const caropic =
   [
         {
           "url": "https://colorlib.com/wp/wp-content/uploads/sites/2/5_apparel-mockups.jpg",
@@ -19,5 +19,5 @@ export const caropic =
         }
       ]
 
-
+export default caropic;
 

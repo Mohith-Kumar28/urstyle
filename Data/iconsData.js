@@ -1,6 +1,6 @@
 
 
- export  const iconsData = [
+ const iconsData = [
   {
     "url": "/f1.png",
     "des": "Free shipping"
@@ -26,3 +26,4 @@
     "des": "24/7 Support"
   },
 ];
+export default iconsData
