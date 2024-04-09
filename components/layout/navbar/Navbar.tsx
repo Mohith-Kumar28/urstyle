@@ -1,35 +1,39 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import Link from "next/link"; // Import Link from next/link
+
+import Link from "next/link";
 
 const navigation = [
-  {order:"1", name: "About", to: "/Component/About" },
-  {order:"2", name: "Contact", to: "/Component/Contact" },
-  {order:"3", name: "Home", to: "/Component/Home" },
+  { order: "1", name: "About", to: "/Component/About" },
+  { order: "2", name: "Contact", to: "/Component/Contact" },
+  { order: "3", name: "Home", to: "/Component/Home" },
 ];
 
 export default function Navbar() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownOpenHem, setIsDropdownOpenHem] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <div className="  bg-purple-200">
       <div className="flex relative h-16 mx-auto max-w-7xl px-4 items-center justify-between">
         <div className="flex items-center justify-between">
           <div className="">
-            <Link href="/Component/Clothes" className="font-serif text-cyan-800 text-xl font-extrabold">
+            <Link
+              href="/Component/Clothes"
+              className="font-serif text-cyan-800 text-xl font-extrabold"
+            >
               URSTYLE
             </Link>
           </div>
           <div className="hidden xsm:block">
             <div className="flex ml-2 sm:ml-10 items-baseline">
-            {navigation.map((item) => (
-                      <Link key={item.order} href={item.to} >
-                        <div className="pl-4 text-neutral-950 block py-1 text-sm sm:text-base font-normal hover:bg-gray-700 hover:text-white rounded-md px-1">
-                          {item.name}
-                        </div>
-                      </Link>
-                    ))}
+              {navigation.map((item) => (
+                <Link key={item.order} href={item.to}>
+                  <div className="pl-4 text-neutral-950 block py-1 text-sm sm:text-base font-normal hover:bg-gray-700 hover:text-white rounded-md px-1">
+                    {item.name}
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -56,7 +60,12 @@ export default function Navbar() {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
                   </svg>
                 </button>
                 {isDropdownOpenHem && (
@@ -96,7 +105,6 @@ export default function Navbar() {
                 </button>
                 {isDropdownOpen && (
                   <div
-                    className=""
                     onMouseEnter={() => setIsDropdownOpen(true)}
                     onMouseLeave={() => setIsDropdownOpen(false)}
                   >
@@ -106,18 +114,33 @@ export default function Navbar() {
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
                     >
-                      <Link href="#" >
-                        <div className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-0">
+                      <Link href="#">
+                        <div
+                          className="block px-4 py-2 text-sm text-gray-700"
+                          role="menuitem"
+                          tabIndex={-1}
+                          id="user-menu-item-0"
+                        >
                           Your Profile
                         </div>
                       </Link>
-                      <Link href="#" >
-                        <div className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-1">
+                      <Link href="#">
+                        <div
+                          className="block px-4 py-2 text-sm text-gray-700"
+                          role="menuitem"
+                          tabIndex={-1}
+                          id="user-menu-item-1"
+                        >
                           Settings
                         </div>
                       </Link>
-                      <Link href="/components/Signin" >
-                        <div className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-2">
+                      <Link href="/components/Signin">
+                        <div
+                          className="block px-4 py-2 text-sm text-gray-700"
+                          role="menuitem"
+                          tabIndex={-1}
+                          id="user-menu-item-2"
+                        >
                           Sign out
                         </div>
                       </Link>
