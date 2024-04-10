@@ -1,19 +1,27 @@
+"use client"
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import avgg from '@/components/reusablecomponents/avgg';
 import CalendarIcon from '@/components/reusablecomponents/CalendarIcon';
 import Star from '@/components/reusablecomponents/Star';
 import Sitelink from '@/components/reusablecomponents/Sitelink';
 import itemsData from '@/Data/items.json';
-import Cardlist from './Cardlist';
-import Summary from './Summary';
+import Cardlist from '@/components/details/overview/cardlist/Cardlist';
+import Summary from '@/components/details/overview/summary/Summary';
 
 function Details() {
-  // const router = useRouter();
-  // const { groupindex } = router.index;
-  const groupIndex = 2;
-  const filteredItems = itemsData[groupIndex];
+  
+//   const searchParams = useSearchParams();
+//  const index = searchParams.get('index');
+//  const groupIndex = index;
+//  const filteredItems = itemsData[groupIndex];
 
+  
+  const {index} = useParams()
+  console.log('index', index)
+  const groupIndex = index;
+  const filteredItems = itemsData[groupIndex];
+  console.log(itemsData)
   return (
     <div className="    m-1">
       <div className="grid sm:grid-cols-2 border-2 rounded-lg border-stone-300  md:ml-10 m-2 ">

@@ -2,8 +2,33 @@ import React from 'react';
 import Link from 'next/link';
 import Star from '@/components/reusablecomponents/Star';
 import Sitelink from '@/components/reusablecomponents/Sitelink';
+import avgg from '@/components/reusablecomponents/avgg';
+interface CartItem {
+  id: number;
+  name: string;
+  code: string;
+  link: string;
+  image_url: string;
+  price: string;
+  review: {
+    image: string;
+    rname: string;
+    date: string;
+    content: string;
+    rating: number;
+  }[];
+  description: string;
+}
 
-function Summary({ filteredItems, groupIndex }) {
+interface FilteredItems {
+  cart: CartItem[];
+}
+
+interface Props {
+  filteredItems: FilteredItems;
+  groupIndex: number;
+}
+function Summary({ filteredItems, groupIndex }: Props) {
   return (
     <>
       {filteredItems.cart.map((cart, cartIndex) => (
@@ -32,17 +57,11 @@ function Summary({ filteredItems, groupIndex }) {
                   </div>
                   <div className="font-semibold my-1">{cart.price}</div>
                   <div className="mb-2">{cart.description}</div>
-                  <Sitelink sitelink={cart.image_url} />
+                  <Sitelink setsitelink={cart.image_url} sitelink={cart.link}/>
 
                   <div className=" flex my-2 items-center space-x-3 font-medium">
                     <Link
-                      href={{
-                        pathname: "/components/Moredetails",
-                        query: {
-                          cartid: cartIndex,
-                          groupid: groupIndex,
-                        },
-                      }}
+                      href={`/moredetails/${groupIndex}/${cartIndex}`}
                       rel="noopener noreferrer"
                       className=" flex   items-center   rounded-lg bg-stone-300 hover:bg-stone-400 p-1  "
                     >
